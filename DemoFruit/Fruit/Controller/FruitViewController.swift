@@ -15,11 +15,13 @@ class FruitViewController: UIViewController {
     
     var dataSource = [Fruit]()
     
+    var fruitViewModel = FruitViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Fruit"
         setCollectionView()
-        checkPhotoLibrary()
+        updateCollectionView()
     }
     
     func setCollectionView(){
@@ -28,38 +30,21 @@ class FruitViewController: UIViewController {
         collectionView.register(UINib(nibName: "FruitCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FruitCollectionViewCell")
     }
     
-    func checkPhotoLibrary() {
-        let photos = PHPhotoLibrary.authorizationStatus()
-        if photos == .notDetermined {
-            PHPhotoLibrary.requestAuthorization({ status in
-                switch status {
-                case .authorized:
-                    self.updateCollectionView()
-                default:
-                    DispatchQueue.main.async {
-                        UIApplication.shared.open(URL(string: "App-prefs:DemoFruit&path=Photo")!, options: [:], completionHandler: nil)
-                    }
-                }
-            })
-        } else if photos == .authorized {
-            updateCollectionView()
-        }
-    }
-    
     func updateCollectionView() {
-        self.dataSource = FruitManager.shared.fruitData()
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
+        fruitViewModel.checkPhotoLibrary() {[unowned self] fruit in
+            self.dataSource = fruit
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
     }
-    
 }
 
 extension FruitViewController: UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let fruitDetailViewController = FruitDetailViewController()
-        fruitDetailViewController.fruit = dataSource[indexPath.row]
+        fruitDetailViewController.fruitData = dataSource[indexPath.row]
         self.navigationController?.pushViewController(fruitDetailViewController, animated: true)
     }
     

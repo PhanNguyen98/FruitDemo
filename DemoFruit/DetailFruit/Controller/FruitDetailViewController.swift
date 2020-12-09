@@ -34,8 +34,8 @@ class FruitDetailViewController: UIViewController {
     @IBOutlet weak var imageView: UIView!
     @IBOutlet weak var ratingView: UIView!
     
-
-    var fruit: Fruit?
+    var fruitData: Fruit?
+    var fruitDetailViewModel = FruitDetailViewModel()
     var selectedIndex = Int()
     
     override func viewDidLoad() {
@@ -52,6 +52,7 @@ class FruitDetailViewController: UIViewController {
         decreaseButton.roundedButtonLeft(width: 20, height: 20)
     }
     
+    
     func setRatingStarView() {
         updateRating(requiredRating: nil)
         ratingStarView.didTouchCosmos = didTouchCosmos(_:)
@@ -65,8 +66,8 @@ class FruitDetailViewController: UIViewController {
     }
     
     func setData() {
-        fruitImageView.image = fruit?.imageFruit
-        nameFruitLabel.text = fruit?.nameFruit.rawValue
+        fruitImageView.image = fruitData?.imageFruit
+        nameFruitLabel.text = fruitData?.nameFruit.rawValue
     }
     
     func setUI() {
@@ -93,7 +94,7 @@ class FruitDetailViewController: UIViewController {
         fruitImageView.layer.shadowRadius = 10.0
         
         introduceLabel.text = "Beschreibung"
-        contentIntroduceLabel.text = "trái là một phần của những loại thực vật có hoa, chuyển hóa từ những mô riêng biệt của hoa, có thể có một hoặc nhiều bầu nhụy và trong một số trường hợp thì là mô phụ"
+        contentIntroduceLabel.text = ""
         
         amountTitleLabel.text = "Anzahl"
         
@@ -146,16 +147,14 @@ extension FruitDetailViewController {
         ratingStarView.rating = newRatingValue
         self.ratingLabel.text = roundingValue(ratingStarView.rating)
     }
-    
+
     private func didTouchCosmos(_ rating: Double) {
         updateRating(requiredRating: rating)
         ratingLabel.text = roundingValue(rating)
-        ratingLabel.textColor = UIColor(red: 133/255, green: 116/255, blue: 154/255, alpha: 1)
     }
-      
+
     private func didFinishTouchingCosmos(_ rating: Double) {
         self.ratingLabel.text = roundingValue(rating)
-        ratingLabel.textColor = UIColor(red: 183/255, green: 186/255, blue: 204/255, alpha: 1)
     }
 }
 
@@ -186,7 +185,7 @@ extension FruitDetailViewController: UICollectionViewDataSource {
 extension FruitDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = UIScreen.main.bounds.width
-        return CGSize(width: width/3, height: 50)
+        return CGSize(width: width/3, height: 40)
     }
 }
 

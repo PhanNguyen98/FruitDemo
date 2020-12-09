@@ -6,12 +6,12 @@
 //  Copyright © 2020 PhanDinhNguyen. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import Photos
 
 
 class FruitManager {
+    
     static let shared = FruitManager()
     
     func fruitData() -> [Fruit] {

@@ -29,11 +29,11 @@ class AllergeneCollectionViewCell: UICollectionViewCell {
     
     func checkTitleCell(index: Int) {
         switch index {
-        case 1:
+        case 0:
             allergeneLabel.text = "Soja"
-        case 2:
+        case 1:
             allergeneLabel.text = "Senf"
-        case 3:
+        case 2:
             allergeneLabel.text = "Avocado"
         default:
             allergeneLabel.text = ""

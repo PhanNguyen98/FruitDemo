@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D543975F25806A9A0059CD4F /* FruitDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D543975E25806A9A0059CD4F /* FruitDetailViewModel.swift */; };
 		D59119CA257DD37600435300 /* UIViewController+RoundingValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59119C9257DD37600435300 /* UIViewController+RoundingValue.swift */; };
+		D5AE50F2257FBFCB00713F26 /* FruitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AE50F1257FBFCB00713F26 /* FruitViewModel.swift */; };
 		EEF8CB8BF0DA5A65BF6C1F47 /* Pods_DemoFruit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF70D14115CF9B2DE441664D /* Pods_DemoFruit.framework */; };
 		F94A109F256FB92400FEF18A /* AllergeneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94A109D256FB92400FEF18A /* AllergeneCollectionViewCell.swift */; };
 		F94A10A0256FB92400FEF18A /* AllergeneCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94A109E256FB92400FEF18A /* AllergeneCollectionViewCell.xib */; };
@@ -30,7 +32,9 @@
 /* Begin PBXFileReference section */
 		17EC50B6257344105DDD8291 /* Pods-DemoFruit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoFruit.release.xcconfig"; path = "Target Support Files/Pods-DemoFruit/Pods-DemoFruit.release.xcconfig"; sourceTree = "<group>"; };
 		AF70D14115CF9B2DE441664D /* Pods_DemoFruit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoFruit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D543975E25806A9A0059CD4F /* FruitDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitDetailViewModel.swift; sourceTree = "<group>"; };
 		D59119C9257DD37600435300 /* UIViewController+RoundingValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+RoundingValue.swift"; sourceTree = "<group>"; };
+		D5AE50F1257FBFCB00713F26 /* FruitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitViewModel.swift; sourceTree = "<group>"; };
 		D6515D37362F33BDBE99D970 /* Pods-DemoFruit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoFruit.debug.xcconfig"; path = "Target Support Files/Pods-DemoFruit/Pods-DemoFruit.debug.xcconfig"; sourceTree = "<group>"; };
 		F94A109D256FB92400FEF18A /* AllergeneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergeneCollectionViewCell.swift; sourceTree = "<group>"; };
 		F94A109E256FB92400FEF18A /* AllergeneCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllergeneCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				F9DD4861256B920300956C85 /* FruitViewController.swift */,
+				D5AE50F1257FBFCB00713F26 /* FruitViewModel.swift */,
 				F9DD4862256B920300956C85 /* FruitViewController.xib */,
 			);
 			path = Controller;
@@ -191,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				F9B7AB17256DFAD600DC162F /* FruitDetailViewController.swift */,
+				D543975E25806A9A0059CD4F /* FruitDetailViewModel.swift */,
 				F9B7AB18256DFAD600DC162F /* FruitDetailViewController.xib */,
 			);
 			path = Controller;
@@ -323,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9B83520256D059200BD2055 /* Fruit.swift in Sources */,
+				D5AE50F2257FBFCB00713F26 /* FruitViewModel.swift in Sources */,
 				F9900EEB2570ADF800C043E3 /* UIButton+RoundButton.swift in Sources */,
 				F9DD484C256B90E500956C85 /* AppDelegate.swift in Sources */,
 				F9B7AB1C256E603B00DC162F /* PhotoManager.swift in Sources */,
@@ -332,6 +339,7 @@
 				F9B83516256CEC4C00BD2055 /* FruitManager.swift in Sources */,
 				D59119CA257DD37600435300 /* UIViewController+RoundingValue.swift in Sources */,
 				F94A109F256FB92400FEF18A /* AllergeneCollectionViewCell.swift in Sources */,
+				D543975F25806A9A0059CD4F /* FruitDetailViewModel.swift in Sources */,
 				F9DD4863256B920300956C85 /* FruitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

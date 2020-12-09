@@ -45,7 +45,7 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v4W-Ge-vJ5">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="829"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="839"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="en1-Km-VLJ">
                                     <rect key="frame" x="20" y="10" width="374" height="374"/>
@@ -72,6 +72,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2w4-PR-uZM" customClass="CosmosView" customModule="Cosmos">
                                                     <rect key="frame" x="70" y="204.33333333333334" width="120" height="20"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="CFU-o6-2eF"/>
                                                         <constraint firstAttribute="width" constant="120" id="s0M-8I-7vr"/>
                                                     </constraints>
                                                 </view>
@@ -199,7 +200,7 @@
                                     </collectionViewFlowLayout>
                                 </collectionView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Xr-sT-yyo">
-                                    <rect key="frame" x="25" y="759" width="364" height="60"/>
+                                    <rect key="frame" x="25" y="769" width="364" height="60"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YT0-GB-JJh">
                                             <rect key="frame" x="0.0" y="0.0" width="364" height="60"/>
@@ -210,8 +211,7 @@
                                                 <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                             </accessibility>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="8XX-Dq-5CF"/>
-                                                <constraint firstAttribute="width" constant="40" id="NUv-kt-Fc5"/>
+                                                <constraint firstAttribute="width" secondItem="48E-RA-LzR" secondAttribute="height" multiplier="1:1" id="rtx-2r-3Mb"/>
                                             </constraints>
                                         </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shopping-bag" translatesAutoresizingMaskIntoConstraints="NO" id="ct7-Gc-gzI">
@@ -221,8 +221,7 @@
                                                 <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
                                             </accessibility>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="40" id="B5B-1s-pZq"/>
-                                                <constraint firstAttribute="height" constant="40" id="PLN-2A-CEI"/>
+                                                <constraint firstAttribute="width" secondItem="ct7-Gc-gzI" secondAttribute="height" multiplier="1:1" id="YDn-3m-Qoe"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7.77 €" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9f3-4M-9wP">
@@ -243,7 +242,7 @@
                                                 <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                             </accessibility>
                                             <constraints>
-                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="iQt-DK-4Ob"/>
+                                                <constraint firstAttribute="width" constant="100" id="iQt-DK-4Ob"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -294,7 +293,7 @@
                                 <constraint firstItem="V9i-d0-md0" firstAttribute="top" secondItem="w1G-Mf-7JW" secondAttribute="bottom" constant="30" id="jpJ-Ji-d0Q"/>
                                 <constraint firstItem="Oma-Bu-Tnh" firstAttribute="top" secondItem="HkX-NX-wkS" secondAttribute="bottom" constant="25" id="k6I-nA-0Kg"/>
                                 <constraint firstItem="en1-Km-VLJ" firstAttribute="leading" secondItem="v4W-Ge-vJ5" secondAttribute="leading" constant="20" id="nRn-4Z-cIb"/>
-                                <constraint firstItem="0Xr-sT-yyo" firstAttribute="top" secondItem="Oma-Bu-Tnh" secondAttribute="bottom" constant="30" id="t6Z-mB-2Tb"/>
+                                <constraint firstItem="0Xr-sT-yyo" firstAttribute="top" secondItem="Oma-Bu-Tnh" secondAttribute="bottom" constant="40" id="t6Z-mB-2Tb"/>
                                 <constraint firstItem="jya-1V-kje" firstAttribute="leading" secondItem="v4W-Ge-vJ5" secondAttribute="leading" constant="25" id="uRk-WR-uMn"/>
                                 <constraint firstItem="0Xr-sT-yyo" firstAttribute="leading" secondItem="v4W-Ge-vJ5" secondAttribute="leading" constant="25" id="x8U-bF-W30"/>
                                 <constraint firstItem="V9i-d0-md0" firstAttribute="leading" secondItem="v4W-Ge-vJ5" secondAttribute="leading" constant="25" id="zyW-4Y-2W0"/>
