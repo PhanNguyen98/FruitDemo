@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D532004F25826A8F0042003D /* UIView+DropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D532004E25826A8F0042003D /* UIView+DropShadow.swift */; };
 		D543975F25806A9A0059CD4F /* FruitDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D543975E25806A9A0059CD4F /* FruitDetailViewModel.swift */; };
 		D59119CA257DD37600435300 /* UIViewController+RoundingValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59119C9257DD37600435300 /* UIViewController+RoundingValue.swift */; };
 		D5AE50F2257FBFCB00713F26 /* FruitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AE50F1257FBFCB00713F26 /* FruitViewModel.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		17EC50B6257344105DDD8291 /* Pods-DemoFruit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoFruit.release.xcconfig"; path = "Target Support Files/Pods-DemoFruit/Pods-DemoFruit.release.xcconfig"; sourceTree = "<group>"; };
 		AF70D14115CF9B2DE441664D /* Pods_DemoFruit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoFruit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D532004E25826A8F0042003D /* UIView+DropShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+DropShadow.swift"; sourceTree = "<group>"; };
 		D543975E25806A9A0059CD4F /* FruitDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitDetailViewModel.swift; sourceTree = "<group>"; };
 		D59119C9257DD37600435300 /* UIViewController+RoundingValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+RoundingValue.swift"; sourceTree = "<group>"; };
 		D5AE50F1257FBFCB00713F26 /* FruitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitViewModel.swift; sourceTree = "<group>"; };
@@ -85,6 +87,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D525098025831A050043C3B2 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				F9DD485E256B914600956C85 /* DetailFruit */,
+				F9DD485D256B912D00956C85 /* Fruit */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		F94A109C256FB8E000FEF18A /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +111,7 @@
 				F9900EEA2570ADF800C043E3 /* UIButton+RoundButton.swift */,
 				F9E4E32B2570BA0F005241EC /* UILabel+RoundLabel.swift */,
 				D59119C9257DD37600435300 /* UIViewController+RoundingValue.swift */,
+				D532004E25826A8F0042003D /* UIView+DropShadow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -146,8 +158,7 @@
 				F9B83521256D0E0C00BD2055 /* AppDelegate */,
 				F9E4E32D2570BA62005241EC /* Model */,
 				F9B83514256CEC1700BD2055 /* Common */,
-				F9DD485E256B914600956C85 /* DetailFruit */,
-				F9DD485D256B912D00956C85 /* Fruit */,
+				D525098025831A050043C3B2 /* UI */,
 				F9DD4852256B90E600956C85 /* Assets.xcassets */,
 				F9DD4854256B90E600956C85 /* LaunchScreen.storyboard */,
 				F9DD4857256B90E600956C85 /* Info.plist */,
@@ -333,6 +344,7 @@
 				F9900EEB2570ADF800C043E3 /* UIButton+RoundButton.swift in Sources */,
 				F9DD484C256B90E500956C85 /* AppDelegate.swift in Sources */,
 				F9B7AB1C256E603B00DC162F /* PhotoManager.swift in Sources */,
+				D532004F25826A8F0042003D /* UIView+DropShadow.swift in Sources */,
 				F9E4E32C2570BA0F005241EC /* UILabel+RoundLabel.swift in Sources */,
 				F9B7AB19256DFAD600DC162F /* FruitDetailViewController.swift in Sources */,
 				F9DD4867256B93C800956C85 /* FruitCollectionViewCell.swift in Sources */,

@@ -11,6 +11,7 @@ import Cosmos
 
 class FruitDetailViewController: UIViewController {
 
+    //MARK: Properties
     @IBOutlet weak var fruitImageView: UIImageView!
     @IBOutlet weak var introduceLabel: UILabel!
     @IBOutlet weak var contentIntroduceLabel: UILabel!
@@ -33,13 +34,28 @@ class FruitDetailViewController: UIViewController {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var imageView: UIView!
     @IBOutlet weak var ratingView: UIView!
+    @IBOutlet weak var typeFruitView: UIView!
     
     var fruitData: Fruit?
-    var fruitDetailViewModel = FruitDetailViewModel()
+
+    var viewModel = FruitDetailViewModel()
     var selectedIndex = Int()
     
+    //MARK: Action
+    @IBAction func touchIncreaseButton(_ sender: UIButton) {
+        let count = Int(numberLabel.text ?? "0")!
+        viewModel.increaseCount(count: count)
+    }
+    
+    @IBAction func touchDecreaseButton(_ sender: UIButton) {
+        let count = Int(numberLabel.text ?? "0")!
+        viewModel.decreaseCount(count: count)
+    }
+    
+    //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate = self
         setUI()
         setData()
         setCollectionViewDetailFruit()
@@ -48,11 +64,10 @@ class FruitDetailViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        increaseButton.roundedButtonRight(width: 20, height: 20)
-        decreaseButton.roundedButtonLeft(width: 20, height: 20)
+        cornerRadiusUI()
     }
     
-    
+    //MARK: SetUI
     func setRatingStarView() {
         updateRating(requiredRating: nil)
         ratingStarView.didTouchCosmos = didTouchCosmos(_:)
@@ -68,6 +83,13 @@ class FruitDetailViewController: UIViewController {
     func setData() {
         fruitImageView.image = fruitData?.imageFruit
         nameFruitLabel.text = fruitData?.nameFruit.rawValue
+    }
+    
+    func cornerRadiusUI() {
+        increaseButton.roundedButtonRight(width: 20, height: 20)
+        decreaseButton.roundedButtonLeft(width: 20, height: 20)
+        cartImageView.layer.cornerRadius = cartImageView.frame.height/2
+        payView.layer.cornerRadius = payView.frame.height/2
     }
     
     func setUI() {
@@ -88,22 +110,15 @@ class FruitDetailViewController: UIViewController {
         fruitImageView.layer.cornerRadius = 10
         fruitImageView.contentMode = .scaleToFill
         fruitImageView.layer.masksToBounds = true
-        fruitImageView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-        fruitImageView.layer.shadowOffset = CGSize(width: 0, height: 3)
-        fruitImageView.layer.shadowOpacity = 1.0
-        fruitImageView.layer.shadowRadius = 10.0
         
         introduceLabel.text = "Beschreibung"
+        
         contentIntroduceLabel.text = ""
         
         amountTitleLabel.text = "Anzahl"
         
         amountView.layer.cornerRadius = 22
-        amountView.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
-        amountView.layer.shadowOffset = CGSize(width: 0, height: 5)
-        amountView.layer.shadowOpacity = 1.0
-        amountView.layer.shadowRadius = 10
-        amountView.layer.masksToBounds = false
+        amountView.dropShadow(color: UIColor.black, opacity: 0.5, offSet: CGSize(width: 0, height: 3), radius: 10, scale: true)
         
         increaseButton.layer.cornerRadius = 8
         increaseButton.setTitle("+", for: .normal)
@@ -111,34 +126,31 @@ class FruitDetailViewController: UIViewController {
         decreaseButton.layer.cornerRadius = 8
         decreaseButton.setTitle("-", for: .normal)
         
-        numberLabel.text = "5"
+        numberLabel.text = "0"
         numberLabel.layer.masksToBounds = true
         
         allergeneLabel.text = "Allergene"
         
         typeLabel.layer.borderWidth = 0.5
         typeLabel.layer.cornerRadius = 20
-        typeLabel.layer.borderColor = UIColor.white.cgColor
-        typeLabel.layer.masksToBounds = true
-        typeLabel.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
-        typeLabel.layer.shadowOffset = CGSize(width: 0, height: 5)
-        typeLabel.layer.shadowOpacity = 1.0
-        typeLabel.layer.shadowRadius = 10
         typeLabel.layer.masksToBounds = true
         
-        payView.layer.cornerRadius = 25
-        payView.layer.masksToBounds = true
+        typeFruitView.layer.cornerRadius = 20
+        typeFruitView.dropShadow(color: UIColor.black, opacity: 0.5, offSet: CGSize(width: 0, height: 5), radius: 10, scale: true)
+    
+        payView.dropShadow(color: UIColor.black, opacity: 0.5, offSet: CGSize(width: 0, height: 5), radius: 10, scale: true)
         
-        cartImageView.layer.cornerRadius = 20
         cartImageView.layer.borderWidth = 1
         cartImageView.layer.borderColor = UIColor.white.cgColor
         cartImageView.layer.masksToBounds = true
+        
     }
-
+    
 }
 
-// Setting rating star view
+//MARK: Setting rating star view
 extension FruitDetailViewController {
+    
     private func updateRating(requiredRating: Double?) {
         var newRatingValue: Double = 0
         if let nonEmptyRequiredRating = requiredRating {
@@ -156,15 +168,20 @@ extension FruitDetailViewController {
     private func didFinishTouchingCosmos(_ rating: Double) {
         self.ratingLabel.text = roundingValue(rating)
     }
+    
 }
 
+//MARK: CollectionViewDelegate
 extension FruitDetailViewController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndex = indexPath.row
         self.collectionView.reloadData()
     }
+    
 }
 
+//MARK: CollectionViewDataSource
 extension FruitDetailViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -175,19 +192,34 @@ extension FruitDetailViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AllergeneCollectionViewCell", for: indexPath) as? AllergeneCollectionViewCell else {
             return AllergeneCollectionViewCell()
         }
-        cell.backgroundColor = selectedIndex == indexPath.row ? UIColor.orange : UIColor.white
+        cell.backgroundColor = selectedIndex == indexPath.row ? UIColor.brown : UIColor.white
         cell.checkTitleCell(index: indexPath.row)
         return cell
     }
-
+    
 }
 
+//MARK: CollectionViewLayout
 extension FruitDetailViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = UIScreen.main.bounds.width
-        return CGSize(width: width/3, height: 40)
+        return CGSize(width: width/3, height: 50)
     }
+    
 }
 
+//MARK: Delegate
+extension FruitDetailViewController: FruitDetailViewModelDelegate {
+    
+    func increase(count: Int) {
+        numberLabel.text = String(count)
+    }
+    
+    func decrease(count: Int) {
+        numberLabel.text = String(count)
+    }
+    
+}
 
 

@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol FruitCollectionViewCellDelegate: class {
+    func settingFavorite (cell: UICollectionViewCell)
+}
+
 class FruitCollectionViewCell: UICollectionViewCell {
     
+    //MARK: Properties
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var fruitImage: UIImageView!
@@ -18,13 +23,30 @@ class FruitCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var noteLabel: UILabel!
     @IBOutlet weak var discountLabel: UILabel!
     
+    weak var delegate:  FruitCollectionViewCellDelegate?
+    
+    var isActive:Bool = true
     let salePriceLabel = UILabel()
+    
+    //MARK: Action
+    @IBAction func touchFavoriteButton(_ sender: UIButton?) {
+        if  isActive {
+            isActive = false
+            favoriteButton.setImage(UIImage(named:"heart-click"), for: .normal)
+            favoriteButton.tintColor = UIColor.red
+        } else {
+            isActive = true
+            favoriteButton.setImage( UIImage(named:"heart-normal"), for: .normal)
+            favoriteButton.tintColor = UIColor.white
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.setUI()
     }
     
+    //MARK: SetUI
     func setUI() {
         //FruitCollectionViewCell
         backgroundColor = UIColor.white
@@ -33,8 +55,9 @@ class FruitCollectionViewCell: UICollectionViewCell {
         layer.cornerRadius = 10
         layer.masksToBounds = true
         
-        favoriteButton.setTitle("♡", for: .normal)
         favoriteButton.layer.cornerRadius = 12
+        favoriteButton.setImage(UIImage(named: "heart-normal"), for: .normal)
+        favoriteButton.tintColor = UIColor.white
         
         storeButton.layer.cornerRadius = 8
         

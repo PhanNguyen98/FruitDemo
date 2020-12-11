@@ -86,5 +86,9 @@ extension FruitViewController: UICollectionViewDelegateFlowLayout{
         return CGSize(width: width, height: width*1.5)
     }
     
-        
+}
+
+extension FruitViewController: FruitCollectionViewCellDelegate{
+    func settingFavorite(cell: UICollectionViewCell) {
+    }
 }

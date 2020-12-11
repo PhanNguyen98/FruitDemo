@@ -32,9 +32,13 @@
                             <constraint firstAttribute="height" constant="35" id="Eve-se-K5A"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                        <color key="tintColor" systemColor="systemRedColor"/>
                         <state key="normal" title="Button">
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <connections>
+                            <action selector="touchFavoriteButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="DHI-Cf-IHo"/>
+                        </connections>
                     </button>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="c2Q-Qq-0Jg">
                         <rect key="frame" x="5" y="235" width="193" height="45"/>
@@ -125,6 +129,9 @@
         <image name="add-to-cart (1)" width="64" height="64"/>
         <systemColor name="placeholderTextColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
