@@ -35,21 +35,19 @@ class FruitDetailViewController: UIViewController {
     @IBOutlet weak var imageView: UIView!
     @IBOutlet weak var ratingView: UIView!
     @IBOutlet weak var typeFruitView: UIView!
-    
-    var fruitData: Fruit?
 
     var viewModel = FruitDetailViewModel()
     var selectedIndex = Int()
     
     //MARK: Action
     @IBAction func touchIncreaseButton(_ sender: UIButton) {
-        let count = Int(numberLabel.text ?? "0")!
-        viewModel.increaseCount(count: count)
+        guard let count = Int(numberLabel.text ?? "0") else { return }
+        viewModel.increase(count: count)
     }
     
     @IBAction func touchDecreaseButton(_ sender: UIButton) {
-        let count = Int(numberLabel.text ?? "0")!
-        viewModel.decreaseCount(count: count)
+        guard let count = Int(numberLabel.text ?? "0") else { return }
+        viewModel.decrease(count: count)
     }
     
     //MARK: ViewDidLoad
@@ -81,8 +79,8 @@ class FruitDetailViewController: UIViewController {
     }
     
     func setData() {
-        fruitImageView.image = fruitData?.imageFruit
-        nameFruitLabel.text = fruitData?.nameFruit.rawValue
+        fruitImageView.image = viewModel.fruitData?.imageFruit
+        nameFruitLabel.text = viewModel.fruitData?.nameFruit.rawValue
     }
     
     func cornerRadiusUI() {
@@ -110,6 +108,7 @@ class FruitDetailViewController: UIViewController {
         fruitImageView.layer.cornerRadius = 10
         fruitImageView.contentMode = .scaleToFill
         fruitImageView.layer.masksToBounds = true
+        fruitImageView.contentMode = .scaleAspectFill
         
         introduceLabel.text = "Beschreibung"
         

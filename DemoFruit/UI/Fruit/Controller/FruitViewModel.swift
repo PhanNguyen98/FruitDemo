@@ -10,17 +10,23 @@ import Foundation
 import Photos
 import UIKit
 
+protocol FruitViewModelDelegate: class {
+    func reloadData()
+}
+
 class FruitViewModel {
+    weak var delegate: FruitViewModelDelegate?
     
-    func checkPhotoLibrary(completionHanlder: @escaping ([Fruit]) -> Void) {
-        var data = [Fruit]()
+    var dataSource = [Fruit]()
+    
+    func checkPhotoLibrary() {
         let photos = PHPhotoLibrary.authorizationStatus()
         if photos == .notDetermined {
             PHPhotoLibrary.requestAuthorization({ status in
                 switch status {
                 case .authorized:
-                    data = FruitManager.shared.fruitData()
-                    completionHanlder(data)
+                    self.dataSource = FruitManager.shared.fruitData()
+                    self.delegate?.reloadData()
                 default:
                     DispatchQueue.main.async {
                         UIApplication.shared.open(URL(string: "App-prefs:DemoFruit&path=Photo")!, options: [:], completionHandler: nil)
@@ -28,8 +34,8 @@ class FruitViewModel {
                 }
             })
         } else if photos == .authorized {
-            data = FruitManager.shared.fruitData()
-            completionHanlder(data)
+            dataSource = FruitManager.shared.fruitData()
+            self.delegate?.reloadData()
         }
     }
 }

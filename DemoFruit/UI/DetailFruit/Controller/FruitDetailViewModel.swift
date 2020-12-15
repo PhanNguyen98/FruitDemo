@@ -18,12 +18,14 @@ class FruitDetailViewModel {
     
     weak var delegate: FruitDetailViewModelDelegate?
     
-    func increaseCount(count: Int){
+    var fruitData: Fruit?
+    
+    func increase(count: Int){
         let number = count + 1
         delegate?.increase(count: number)
     }
     
-    func decreaseCount(count: Int){
+    func decrease(count: Int){
         var number = count - 1
         if number < 0 {
             number = 0

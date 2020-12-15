@@ -11,17 +11,22 @@ import Photos
 
 class FruitViewController: UIViewController {
     
+    //MARK: Properties
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var dataSource = [Fruit]()
+    var viewModel = FruitViewModel()
     
-    var fruitViewModel = FruitViewModel()
-    
+    //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Fruit"
         setCollectionView()
-        updateCollectionView()
+        setViewModel()
+    }
+    
+    func setViewModel(){
+        viewModel.delegate = self
+        viewModel.checkPhotoLibrary()
     }
     
     func setCollectionView(){
@@ -30,43 +35,38 @@ class FruitViewController: UIViewController {
         collectionView.register(UINib(nibName: "FruitCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FruitCollectionViewCell")
     }
     
-    func updateCollectionView() {
-        fruitViewModel.checkPhotoLibrary() {[unowned self] fruit in
-            self.dataSource = fruit
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
-    }
 }
 
+//MARK: UIColectionViewDelegate
 extension FruitViewController: UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let fruitDetailViewController = FruitDetailViewController()
-        fruitDetailViewController.fruitData = dataSource[indexPath.row]
+        fruitDetailViewController.viewModel.fruitData = viewModel.dataSource[indexPath.row]
         self.navigationController?.pushViewController(fruitDetailViewController, animated: true)
     }
     
 }
 
+//MARK: UICollectionViewDataSource
 extension FruitViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataSource.count
+        return viewModel.dataSource.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FruitCollectionViewCell", for: indexPath) as? FruitCollectionViewCell else {
             return FruitCollectionViewCell()
         }
-        let item = dataSource[indexPath.row]
+        let item = viewModel.dataSource[indexPath.row]
         cell.setContentCell(item: item)
         return cell
     }
     
 }
 
+//MARK: UICollectionViewDelegateFlowLayout
 extension FruitViewController: UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -88,7 +88,17 @@ extension FruitViewController: UICollectionViewDelegateFlowLayout{
     
 }
 
+//MARK: FruitCollectionViewCellDelegate
 extension FruitViewController: FruitCollectionViewCellDelegate{
     func settingFavorite(cell: UICollectionViewCell) {
+    }
+}
+
+//MARK: FruitViewModelDelegate
+extension FruitViewController: FruitViewModelDelegate{
+    func reloadData() {
+        DispatchQueue.main.async {
+           self.collectionView.reloadData()
+        }
     }
 }
