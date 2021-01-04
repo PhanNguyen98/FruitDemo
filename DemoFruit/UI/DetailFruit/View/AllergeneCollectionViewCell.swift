@@ -39,5 +39,4 @@ class AllergeneCollectionViewCell: UICollectionViewCell {
             allergeneLabel.text = ""
         }
     }
-
 }

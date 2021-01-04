@@ -22,7 +22,8 @@ class FruitManager {
                 let resources = PHAssetResource.assetResources(for: fruitAssetArray[index])
                 let namePhoto = resources.first?.originalFilename
                 let nameFruit  = namePhoto?.components(separatedBy: ".")
-                let fruit = Fruit(price: index, image: PhotoManager.shared.getImageForAsset(asset: fruitAssetArray[index]), name: nameFruit?[0] ?? "error")
+                var fruit = Fruit(price: index, image: PhotoManager.shared.getImageForAsset(asset: fruitAssetArray[index]), name: nameFruit?[0] ?? "error")
+                fruit.ID = index
                 fruitArray.append(fruit)
             }
         }

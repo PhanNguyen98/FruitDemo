@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol FruitCollectionViewCellDelegate: class {
-    func settingFavorite (cell: UICollectionViewCell)
-}
-
 class FruitCollectionViewCell: UICollectionViewCell {
     
     //MARK: Properties
@@ -23,10 +19,9 @@ class FruitCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var noteLabel: UILabel!
     @IBOutlet weak var discountLabel: UILabel!
     
-    weak var delegate:  FruitCollectionViewCellDelegate?
-    
     var isActive:Bool = true
     let salePriceLabel = UILabel()
+    var dataSetting = DataFruit()
     
     //MARK: Action
     @IBAction func touchFavoriteButton(_ sender: UIButton?) {
@@ -34,11 +29,13 @@ class FruitCollectionViewCell: UICollectionViewCell {
             isActive = false
             favoriteButton.setImage(UIImage(named:"heart-click"), for: .normal)
             favoriteButton.tintColor = UIColor.red
+
         } else {
             isActive = true
             favoriteButton.setImage( UIImage(named:"heart-normal"), for: .normal)
             favoriteButton.tintColor = UIColor.white
         }
+        UserDefaultManager.shared.setInfor(data: UserDefaultManager.shared.data)
     }
     
     override func awakeFromNib() {
@@ -46,9 +43,13 @@ class FruitCollectionViewCell: UICollectionViewCell {
         self.setUI()
     }
     
+    override func prepareForReuse() {
+        favoriteButton.setImage( UIImage(named:"heart-normal"), for: .normal)
+        favoriteButton.tintColor = UIColor.white
+    }
+    
     //MARK: SetUI
     func setUI() {
-        //FruitCollectionViewCell
         backgroundColor = UIColor.white
         layer.borderColor = UIColor.white.cgColor
         layer.borderWidth = 0.5
@@ -75,13 +76,15 @@ class FruitCollectionViewCell: UICollectionViewCell {
     }
     
     func setContentCell(item: Fruit){
+        dataSetting.ID = item.ID
+        dataSetting.name = item.nameFruit.rawValue
+        dataSetting.price = 10
         nameLabel.text = item.nameFruit.rawValue
-        let number = item.priceFruit! as NSNumber
-        salePriceLabel.text = "$" + number.stringValue
+        salePriceLabel.text = "$" + String(item.priceFruit ?? 0)
         let attributeString: NSMutableAttributedString =  NSMutableAttributedString(string: salePriceLabel.text!)
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: 2, range: NSMakeRange(0, attributeString.length))
         salePriceLabel.attributedText = attributeString
-        priceLabel.text = "$" + number.stringValue
+        priceLabel.text = "$" + String(item.priceFruit ?? 0)
         fruitImage.image = item.imageFruit
         switch item.nameFruit{
         case .apple:
@@ -97,3 +100,4 @@ class FruitCollectionViewCell: UICollectionViewCell {
     }
         
 }
+

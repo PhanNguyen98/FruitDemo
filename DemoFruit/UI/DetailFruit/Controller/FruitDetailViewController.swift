@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Cosmos
 
 class FruitDetailViewController: UIViewController {
 
@@ -24,7 +23,6 @@ class FruitDetailViewController: UIViewController {
     @IBOutlet weak var nameFruitLabel: UILabel!
     @IBOutlet weak var amountView: UIView!
     @IBOutlet weak var ratingLabel: UILabel!
-    @IBOutlet weak var ratingStarView: CosmosView!
     @IBOutlet weak var payButton: UIButton!
     @IBOutlet weak var payView: UIView!
     @IBOutlet weak var payLabel: UILabel!
@@ -35,7 +33,8 @@ class FruitDetailViewController: UIViewController {
     @IBOutlet weak var imageView: UIView!
     @IBOutlet weak var ratingView: UIView!
     @IBOutlet weak var typeFruitView: UIView!
-
+    @IBOutlet weak var ratingStarView: StarRateView!
+    
     var viewModel = FruitDetailViewModel()
     var selectedIndex = Int()
     
@@ -50,28 +49,22 @@ class FruitDetailViewController: UIViewController {
         viewModel.decrease(count: count)
     }
     
-    //MARK: ViewDidLoad
+    //MARK: View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
+        ratingStarView.delegate = self
         setUI()
         setData()
         setCollectionViewDetailFruit()
-        setRatingStarView()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         cornerRadiusUI()
     }
     
     //MARK: SetUI
-    func setRatingStarView() {
-        updateRating(requiredRating: nil)
-        ratingStarView.didTouchCosmos = didTouchCosmos(_:)
-        ratingStarView.didFinishTouchingCosmos = didFinishTouchingCosmos(_:)
-    }
-    
     func setCollectionViewDetailFruit() {
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -81,6 +74,8 @@ class FruitDetailViewController: UIViewController {
     func setData() {
         fruitImageView.image = viewModel.fruitData?.imageFruit
         nameFruitLabel.text = viewModel.fruitData?.nameFruit.rawValue
+        numberLabel.text = String(viewModel.fruitData?.amountFruit ?? 0)
+        ratingLabel.text = String(viewModel.fruitData?.ratingFruit ?? 0)
     }
     
     func cornerRadiusUI() {
@@ -91,16 +86,6 @@ class FruitDetailViewController: UIViewController {
     }
     
     func setUI() {
-        ratingStarView.settings.updateOnTouch = false
-        ratingStarView.settings.fillMode = .precise
-        ratingStarView.settings.starSize = 20
-        ratingStarView.settings.starMargin = 5
-        ratingStarView.settings.filledColor = UIColor.orange
-        ratingStarView.settings.emptyBorderColor = UIColor.orange
-        ratingStarView.settings.filledBorderColor = UIColor.orange
-        ratingStarView.settings.filledImage = UIImage(named: "GoldStarFilled")
-        ratingStarView.settings.emptyImage = UIImage(named: "GoldStarEmpty")
-        
         imageView.layer.cornerRadius = 25
         
         ratingView.layer.cornerRadius = 25
@@ -124,8 +109,7 @@ class FruitDetailViewController: UIViewController {
         
         decreaseButton.layer.cornerRadius = 8
         decreaseButton.setTitle("-", for: .normal)
-        
-        numberLabel.text = "0"
+    
         numberLabel.layer.masksToBounds = true
         
         allergeneLabel.text = "Allergene"
@@ -142,30 +126,6 @@ class FruitDetailViewController: UIViewController {
         cartImageView.layer.borderWidth = 1
         cartImageView.layer.borderColor = UIColor.white.cgColor
         cartImageView.layer.masksToBounds = true
-        
-    }
-    
-}
-
-//MARK: Setting rating star view
-extension FruitDetailViewController {
-    
-    private func updateRating(requiredRating: Double?) {
-        var newRatingValue: Double = 0
-        if let nonEmptyRequiredRating = requiredRating {
-            newRatingValue = nonEmptyRequiredRating
-        }
-        ratingStarView.rating = newRatingValue
-        self.ratingLabel.text = roundingValue(ratingStarView.rating)
-    }
-
-    private func didTouchCosmos(_ rating: Double) {
-        updateRating(requiredRating: rating)
-        ratingLabel.text = roundingValue(rating)
-    }
-
-    private func didFinishTouchingCosmos(_ rating: Double) {
-        self.ratingLabel.text = roundingValue(rating)
     }
     
 }
@@ -208,15 +168,27 @@ extension FruitDetailViewController: UICollectionViewDelegateFlowLayout {
     
 }
 
-//MARK: Delegate
+//MARK: FruitDetailViewModelDelegate
 extension FruitDetailViewController: FruitDetailViewModelDelegate {
     
     func increase(count: Int) {
         numberLabel.text = String(count)
+        UserDefaultManager.shared.data.amount = count
     }
     
     func decrease(count: Int) {
         numberLabel.text = String(count)
+        UserDefaultManager.shared.data.amount = count
+    }
+    
+}
+
+//MARK: RatingViewDelegate
+extension FruitDetailViewController: RatingViewDelegate {
+    
+    func updateRatingFormatValue(_ value: Float) {
+        ratingLabel.text = String(value)
+        UserDefaultManager.shared.data.rating = value
     }
     
 }

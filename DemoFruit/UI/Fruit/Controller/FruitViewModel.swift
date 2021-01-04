@@ -38,4 +38,19 @@ class FruitViewModel {
             self.delegate?.reloadData()
         }
     }
+    
+    func loadNewDataSources() {
+        guard let listData: [DataFruit] = UserDefaultManager.shared.getInfor() as? [DataFruit] else { return }
+        for item in listData {
+            for index in 0..<dataSource.count{
+                if item.ID == dataSource[index].ID {
+                    dataSource[index].priceFruit = item.price
+                    dataSource[index].ratingFruit = item.rating
+                    dataSource[index].amountFruit = item.amount
+                }
+            }
+        }
+        self.delegate?.reloadData()
+    }
+    
 }

@@ -6,6 +6,5 @@ target 'DemoFruit' do
   use_frameworks!
   
   # Pods for DemoFruit
-  pod 'Cosmos'
   
 end

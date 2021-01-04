@@ -3,14 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D52CEAE82592FA0200755A09 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52CEAE72592FA0100755A09 /* UserDefaultManager.swift */; };
 		D532004F25826A8F0042003D /* UIView+DropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D532004E25826A8F0042003D /* UIView+DropShadow.swift */; };
 		D543975F25806A9A0059CD4F /* FruitDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D543975E25806A9A0059CD4F /* FruitDetailViewModel.swift */; };
 		D59119CA257DD37600435300 /* UIViewController+RoundingValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59119C9257DD37600435300 /* UIViewController+RoundingValue.swift */; };
 		D5AE50F2257FBFCB00713F26 /* FruitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AE50F1257FBFCB00713F26 /* FruitViewModel.swift */; };
+		D5AEDF78259C5D20003979F2 /* UIView+RatingStar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AEDF77259C5D20003979F2 /* UIView+RatingStar.swift */; };
+		D5F79B7325A1F48B00DDBD6F /* UserDefaults+StructValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F79B7225A1F48B00DDBD6F /* UserDefaults+StructValues.swift */; };
 		EEF8CB8BF0DA5A65BF6C1F47 /* Pods_DemoFruit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF70D14115CF9B2DE441664D /* Pods_DemoFruit.framework */; };
 		F94A109F256FB92400FEF18A /* AllergeneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94A109D256FB92400FEF18A /* AllergeneCollectionViewCell.swift */; };
 		F94A10A0256FB92400FEF18A /* AllergeneCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F94A109E256FB92400FEF18A /* AllergeneCollectionViewCell.xib */; };
@@ -33,10 +36,13 @@
 /* Begin PBXFileReference section */
 		17EC50B6257344105DDD8291 /* Pods-DemoFruit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoFruit.release.xcconfig"; path = "Target Support Files/Pods-DemoFruit/Pods-DemoFruit.release.xcconfig"; sourceTree = "<group>"; };
 		AF70D14115CF9B2DE441664D /* Pods_DemoFruit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoFruit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D52CEAE72592FA0100755A09 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		D532004E25826A8F0042003D /* UIView+DropShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+DropShadow.swift"; sourceTree = "<group>"; };
 		D543975E25806A9A0059CD4F /* FruitDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitDetailViewModel.swift; sourceTree = "<group>"; };
 		D59119C9257DD37600435300 /* UIViewController+RoundingValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+RoundingValue.swift"; sourceTree = "<group>"; };
 		D5AE50F1257FBFCB00713F26 /* FruitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitViewModel.swift; sourceTree = "<group>"; };
+		D5AEDF77259C5D20003979F2 /* UIView+RatingStar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+RatingStar.swift"; sourceTree = "<group>"; };
+		D5F79B7225A1F48B00DDBD6F /* UserDefaults+StructValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+StructValues.swift"; sourceTree = "<group>"; };
 		D6515D37362F33BDBE99D970 /* Pods-DemoFruit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoFruit.debug.xcconfig"; path = "Target Support Files/Pods-DemoFruit/Pods-DemoFruit.debug.xcconfig"; sourceTree = "<group>"; };
 		F94A109D256FB92400FEF18A /* AllergeneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllergeneCollectionViewCell.swift; sourceTree = "<group>"; };
 		F94A109E256FB92400FEF18A /* AllergeneCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllergeneCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -96,6 +102,16 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		D5AEDF7B259C6BC5003979F2 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				F9B83515256CEC4C00BD2055 /* FruitManager.swift */,
+				F9B7AB1B256E603B00DC162F /* PhotoManager.swift */,
+				D52CEAE72592FA0100755A09 /* UserDefaultManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		F94A109C256FB8E000FEF18A /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +128,8 @@
 				F9E4E32B2570BA0F005241EC /* UILabel+RoundLabel.swift */,
 				D59119C9257DD37600435300 /* UIViewController+RoundingValue.swift */,
 				D532004E25826A8F0042003D /* UIView+DropShadow.swift */,
+				D5AEDF77259C5D20003979F2 /* UIView+RatingStar.swift */,
+				D5F79B7225A1F48B00DDBD6F /* UserDefaults+StructValues.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -119,19 +137,10 @@
 		F9B83514256CEC1700BD2055 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				D5AEDF7B259C6BC5003979F2 /* Manager */,
 				F9900EE92570ADCA00C043E3 /* Extensions */,
-				F9B83515256CEC4C00BD2055 /* FruitManager.swift */,
-				F9B7AB1B256E603B00DC162F /* PhotoManager.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		F9B83521256D0E0C00BD2055 /* AppDelegate */ = {
-			isa = PBXGroup;
-			children = (
-				F9DD484B256B90E500956C85 /* AppDelegate.swift */,
-			);
-			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 		F9DD483F256B90E400956C85 = {
@@ -155,7 +164,7 @@
 		F9DD484A256B90E500956C85 /* DemoFruit */ = {
 			isa = PBXGroup;
 			children = (
-				F9B83521256D0E0C00BD2055 /* AppDelegate */,
+				F9DD484B256B90E500956C85 /* AppDelegate.swift */,
 				F9E4E32D2570BA62005241EC /* Model */,
 				F9B83514256CEC1700BD2055 /* Common */,
 				D525098025831A050043C3B2 /* UI */,
@@ -232,7 +241,6 @@
 				F9DD4844256B90E500956C85 /* Sources */,
 				F9DD4845256B90E500956C85 /* Frameworks */,
 				F9DD4846256B90E500956C85 /* Resources */,
-				5EDB6A364BAC89A640D4037F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -293,23 +301,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5EDB6A364BAC89A640D4037F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DemoFruit/Pods-DemoFruit-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DemoFruit/Pods-DemoFruit-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DemoFruit/Pods-DemoFruit-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		DC5EC9AC6E7702E58580848E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -344,6 +335,8 @@
 				F9900EEB2570ADF800C043E3 /* UIButton+RoundButton.swift in Sources */,
 				F9DD484C256B90E500956C85 /* AppDelegate.swift in Sources */,
 				F9B7AB1C256E603B00DC162F /* PhotoManager.swift in Sources */,
+				D5F79B7325A1F48B00DDBD6F /* UserDefaults+StructValues.swift in Sources */,
+				D5AEDF78259C5D20003979F2 /* UIView+RatingStar.swift in Sources */,
 				D532004F25826A8F0042003D /* UIView+DropShadow.swift in Sources */,
 				F9E4E32C2570BA0F005241EC /* UILabel+RoundLabel.swift in Sources */,
 				F9B7AB19256DFAD600DC162F /* FruitDetailViewController.swift in Sources */,
@@ -352,6 +345,7 @@
 				D59119CA257DD37600435300 /* UIViewController+RoundingValue.swift in Sources */,
 				F94A109F256FB92400FEF18A /* AllergeneCollectionViewCell.swift in Sources */,
 				D543975F25806A9A0059CD4F /* FruitDetailViewModel.swift in Sources */,
+				D52CEAE82592FA0200755A09 /* UserDefaultManager.swift in Sources */,
 				F9DD4863256B920300956C85 /* FruitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

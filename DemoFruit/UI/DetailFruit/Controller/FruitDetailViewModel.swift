@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Cosmos
 
 protocol FruitDetailViewModelDelegate: class {
     func increase(count: Int)
@@ -19,6 +18,7 @@ class FruitDetailViewModel {
     weak var delegate: FruitDetailViewModelDelegate?
     
     var fruitData: Fruit?
+    var data: DataFruit?
     
     func increase(count: Int){
         let number = count + 1

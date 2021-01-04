@@ -22,6 +22,7 @@ class FruitViewController: UIViewController {
         self.navigationItem.title = "Fruit"
         setCollectionView()
         setViewModel()
+        addNavigationVarButton()
     }
     
     func setViewModel(){
@@ -35,6 +36,15 @@ class FruitViewController: UIViewController {
         collectionView.register(UINib(nibName: "FruitCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FruitCollectionViewCell")
     }
     
+    func addNavigationVarButton() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(settingInforfruit(sender:)))
+    }
+    
+    @objc func settingInforfruit(sender: UIBarButtonItem) {
+        viewModel.loadNewDataSources()
+        print("\(UserDefaultManager.shared.getInfor())")
+    }
+    
 }
 
 //MARK: UIColectionViewDelegate
@@ -42,8 +52,10 @@ extension FruitViewController: UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let fruitDetailViewController = FruitDetailViewController()
+        let cell = collectionView.cellForItem(at: indexPath) as? FruitCollectionViewCell
         fruitDetailViewController.viewModel.fruitData = viewModel.dataSource[indexPath.row]
         self.navigationController?.pushViewController(fruitDetailViewController, animated: true)
+        UserDefaultManager.shared.data = cell?.dataSetting ?? DataFruit()
     }
     
 }
@@ -86,12 +98,6 @@ extension FruitViewController: UICollectionViewDelegateFlowLayout{
         return CGSize(width: width, height: width*1.5)
     }
     
-}
-
-//MARK: FruitCollectionViewCellDelegate
-extension FruitViewController: FruitCollectionViewCellDelegate{
-    func settingFavorite(cell: UICollectionViewCell) {
-    }
 }
 
 //MARK: FruitViewModelDelegate
